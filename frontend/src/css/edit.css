@@ -1,0 +1,48 @@
+.edit-container {
+  background-color: #55c2b3;
+  opacity: 0.95;
+  max-width: 700px;
+  margin: 0 auto;
+  align-items: center;
+  min-width: 450px;
+  border-radius: 3px;
+  padding: 0 1.5rem;
+  align-items: center;
+}
+
+.edit-container,
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.edit-form {
+  padding: 0.5em 1.5em 1.5em 1.5em;
+  width: 100%;
+}
+
+.edit-form textarea {
+  height: 5lh;
+}
+
+.edit-container .recipes-link {
+  margin-bottom: 1.2em;
+}
+
+@media (max-width: 600px) {
+  .edit-form .submit-btn {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .edit-container {
+    width: 100%;
+    height: 100vh;
+    border-radius: none;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+  .edit-form {
+    padding: 0.75em 0.35em;
+  }
+}

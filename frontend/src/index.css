@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Times New Roman", Times, serif;
+  background: url("recipeBG.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  font-size: 1rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 15px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #3e9e8a;
+  border-radius: 8px;
+}
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+button,
+.btn {
+  cursor: pointer;
+  padding: 0.5em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: transparent;
+}
