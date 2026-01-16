@@ -3,6 +3,8 @@ import mysql from "mysql2/promise";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
 
 import {
   getRecipes,
@@ -20,7 +22,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const ssl_path = path.join(__dirname, "ssl", "ca.pem");
+const caCert = fs.readFileSync(ssl_path);
 
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
@@ -29,7 +34,7 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DATABASE,
   port: process.env.MYSQL_PORT,
   ssl: {
-    ca: ssl_path,
+    ca: caCert,
     sslmode: verify - ca,
     rejectUnauthorized: true,
   },
