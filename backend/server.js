@@ -24,7 +24,7 @@ app.use(express.static("public"));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ssl_path = path.join(__dirname, "ssl", "ca.pem");
+const ssl_path = path.join(__dirname, "backend", "ca.pem");
 const caCert = fs.readFileSync(ssl_path);
 
 const pool = mysql.createPool({
