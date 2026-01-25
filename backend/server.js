@@ -35,7 +35,7 @@ const pool = mysql.createPool({
   port: process.env.MYSQL_PORT,
   ssl: {
     ca: caCert,
-    sslmode: verify - ca,
+    sslmode: "VERIFY_CA",
     rejectUnauthorized: true,
   },
 });
