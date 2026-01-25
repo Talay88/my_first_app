@@ -20,7 +20,8 @@ const port = 8080;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "frontend/public")));
+app.use(express.static(path.join(__dirname, "frontend/src")));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -57,6 +58,10 @@ testDbConnection();
 
 app.post("/test", (req, res) => {
   res.send("Got a POST recipe");
+});
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/public", "index.html"));
 });
 
 app.get("/api/recipes", async (req, res) => {
