@@ -20,13 +20,14 @@ const port = 8080;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "frontend/public")));
-app.use(express.static(path.join(__dirname, "frontend/src")));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ssl_path = path.join(__dirname, "ca.pem");
 const caCert = fs.readFileSync(ssl_path);
+
+app.use(express.static(path.join(__dirname, "frontend/public")));
+app.use(express.static(path.join(__dirname, "frontend/src")));
 
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
