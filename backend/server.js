@@ -26,9 +26,6 @@ const __dirname = path.dirname(__filename);
 const ssl_path = path.join(__dirname, "ca.pem");
 const caCert = fs.readFileSync(ssl_path);
 
-app.use(express.static(path.join(__dirname, "frontend/public")));
-app.use(express.static(path.join(__dirname, "frontend/src")));
-
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
@@ -56,14 +53,6 @@ async function testDbConnection() {
 }
 
 testDbConnection();
-
-app.post("/test", (req, res) => {
-  res.send("Got a POST recipe");
-});
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/public", "index.html"));
-});
 
 app.get("/api/recipes", async (req, res) => {
   try {
@@ -145,6 +134,16 @@ app.delete("/api/recipes/:id", async (req, res) => {
     console.error("Route error:", error.message);
     res.status(500).json({ error: "Internal server error" });
   }
+});
+
+app.use(express.static(path.join(__dirname, "frontend/build")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/build"));
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
 });
 
 //run port
